@@ -105,44 +105,50 @@ function Torneo() {
         onChangeTorneo={handleChangeTorneo}
         onSubmit={createOrUpdateTorneo}
       />
-      <div className="min-h-screen bg-gray-100 flex flex-col items-center py-16 px-4">
-        <h1 className="text-4xl font-bold text-black mb-8">Torneos</h1>
-        <button className="bg-green-700 text-white rounded shadow-md p-2 my-4" onClick={openTournamentModal}>
-          Crear Torneo
-        </button>
-        <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-          <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-              <tr>
-                <th className="px-6 py-3">Nombre del torneo</th>
-                <th className="px-6 py-3">Límite de jugadores</th>
-                <th className="px-6 py-3">Modalidad</th>
-                <th className="px-6 py-3">Videojuego</th>
-                <th className="px-6 py-3"></th>
-              </tr>
-            </thead>
-            <tbody>
-              {Torneos.map(torneo => (
-                <tr key={torneo.id} className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 border-gray-200">
-                  <td className="px-6">{torneo.nombre}</td>
-                  <td className="px-6">{torneo.limite_equipos}</td>
-                  <td className="px-6">{torneo.modalidad}</td>
-                  <td className="px-6">{torneo.videojuego.nombre}</td>
-                  <td className="px-6">
-                    <button onClick={() => setModalEditInfo(torneo)} className="bg-blue-600 text-white rounded p-2 mr-2 my-2">
-                      <LuPencil />
-                    </button>
-                    <button onClick={() => removeTorneo(torneo.torneo_id)} className="bg-red-600 text-white rounded p-2 my-2">
-                      <LuTrash />
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+   <div className="relative overflow-x-auto w-full max-w-6xl shadow-2xl rounded-xl ring-1 ring-yellow-600/40">
+    <table className="w-full text-sm text-left text-gray-300">
+      <thead className="text-xs uppercase bg-yellow-900 text-yellow-300">
+        <tr>
+          <th className="px-6 py-3">Nombre del torneo</th>
+          <th className="px-6 py-3">Límite de jugadores</th>
+          <th className="px-6 py-3">Modalidad</th>
+          <th className="px-6 py-3">Videojuego</th>
+          <th className="px-6 py-3 text-center">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {Torneos.map(torneo => (
+          <tr
+            key={torneo.id}
+            className="odd:bg-gray-900 even:bg-gray-800 border-b border-yellow-900 hover:bg-yellow-950 transition"
+          >
+            <td className="px-6 py-4">{torneo.nombre}</td>
+            <td className="px-6 py-4">{torneo.limite_equipos}</td>
+            <td className="px-6 py-4">{torneo.modalidad}</td>
+            <td className="px-6 py-4">{torneo.videojuego?.nombre}</td>
+            <td className="px-6 py-4 flex gap-2 justify-center">
+              <button
+                onClick={() => setModalEditInfo(torneo)}
+                className="bg-yellow-600 hover:bg-yellow-500 text-black p-2 rounded-lg"
+              >
+                <LuPencil />
+              </button>
+              <button
+                onClick={() => removeTorneo(torneo.torneo_id)}
+                className="bg-red-700 hover:bg-red-600 text-white p-2 rounded-lg"
+              >
+                <LuTrash />
+              </button>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+        
         <ToastContainer />
-      </div>
+      
     </>
   );
 }

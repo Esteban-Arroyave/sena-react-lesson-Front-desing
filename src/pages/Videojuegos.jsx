@@ -115,32 +115,48 @@ function VideoJuego() {
           Crear Videojuego
         </button>
 
-        <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-          <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-              <tr>
-                <th className='px-6 py-3'>Nombre</th>
-                <th className='px-6 py-3'>Tipo</th>
-                <th className='px-6 py-3'></th>
-              </tr>
-            </thead>
-            <tbody>
-              {videojuegos.length > 0 ? videojuegos.map((v) => (
-                <tr key={v.id} className="odd:bg-white even:bg-gray-50 dark:odd:bg-gray-900 dark:even:bg-gray-800 border-b dark:border-gray-700">
-                  <td className='px-6 py-3'>{v.nombre}</td>
-                  <td className='px-6 py-3'>{v.tipo.tipo}</td>
-                  <td className='px-6 py-3'>
-                    <button onClick={() => setModalEditInfo(v)} className='bg-blue-600 text-white rounded p-2 mr-2'><LuPencil /></button>
-                    <button onClick={() => removeVideojuego(v.id)} className='bg-red-600 text-white rounded p-2'><LuTrash /></button>
-                  </td>
-                </tr>
-              )) : (
-                <tr><td colSpan="3" className="text-center py-4">No hay videojuegos registrados</td></tr>
-              )}
-            </tbody>
-          </table>
-        </div>
-
+       <div className="relative overflow-x-auto w-full max-w-4xl shadow-2xl rounded-xl ring-1 ring-green-600/40">
+    <table className="w-full text-sm text-left text-gray-300">
+      <thead className="text-xs uppercase bg-green-950 text-green-300">
+        <tr>
+          <th className='px-6 py-3'>Nombre</th>
+          <th className='px-6 py-3'>Tipo</th>
+          <th className='px-6 py-3 text-center'>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {videojuegos.length > 0 ? videojuegos.map((v) => (
+          <tr
+            key={v.id}
+            className="odd:bg-gray-900 even:bg-gray-800 border-b border-green-900 hover:bg-green-950 transition"
+          >
+            <td className='px-6 py-3'>{v.nombre}</td>
+            <td className='px-6 py-3'>{v.tipo_videojuego}</td>
+            <td className='px-6 py-3 flex justify-center gap-2'>
+              <button
+                onClick={() => setModalEditInfo(v)}
+                className='bg-green-600 hover:bg-green-500 text-white p-2 rounded-lg'
+              >
+                <LuPencil />
+              </button>
+              <button
+                onClick={() => removeVideojuego(v.id)}
+                className='bg-red-700 hover:bg-red-600 text-white p-2 rounded-lg'
+              >
+                <LuTrash />
+              </button>
+            </td>
+          </tr>
+        )) : (
+          <tr>
+            <td colSpan="3" className="text-center py-4 text-gray-400">
+              No hay videojuegos registrados
+            </td>
+          </tr>
+        )}
+      </tbody>
+    </table>
+  </div>
         <ToastContainer />
       </div>
     </>

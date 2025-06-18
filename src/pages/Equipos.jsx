@@ -127,56 +127,47 @@ function Equipos() {
           onClick={openEquiposModal}>
           Crear equipo
         </button>
+<div className="relative overflow-x-auto w-full max-w-5xl shadow-2xl rounded-xl ring-1 ring-purple-700/40">
+    <table className="w-full text-sm text-left text-gray-300">
+      <thead className="text-xs uppercase bg-purple-950 text-purple-300">
+        <tr>
+          <th className="px-6 py-3">Nombre del equipo</th>
+          <th className="px-6 py-3">Líder</th>
+          <th className="px-6 py-3">Jugadores</th>
+          <th className="px-6 py-3">Torneo</th>
+          <th className="px-6 py-3 text-center">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {equipos.map((equipo) => (
+          <tr
+            key={equipo.equipo_id}
+            className="odd:bg-gray-900 even:bg-gray-800 border-b border-purple-900 hover:bg-purple-950 transition"
+          >
+            <td className="px-6 py-3">{equipo.nombre}</td>
+            <td className="px-6 py-3">{equipo.lider_id}</td>
+            <td className="px-6 py-3">{equipo.Jugadores?.nombre}</td>
+            <td className="px-6 py-3">{equipo.Torneos?.nombre}</td>
+            <td className="px-6 py-3 flex justify-center gap-2">
+              <button
+                onClick={() => setModalEditInfo(equipo)}
+                className="bg-purple-700 hover:bg-purple-600 text-white p-2 rounded-lg"
+              >
+                <LuPencil />
+              </button>
+              <button
+                onClick={() => removeEquipo(equipo.equipo_id)}
+                className="bg-red-700 hover:bg-red-600 text-white p-2 rounded-lg"
+              >
+                <LuTrash />
+              </button>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
 
-        <div className="relative overflow-x-auto shadow-lg rounded-lg w-full max-w-5xl">
-          <table className="w-full text-sm text-left text-gray-700">
-            <thead className="text-xs uppercase bg-gray-800 text-white">
-              <tr>
-                <th className="px-6 py-3">Nombre del equipo</th>
-                <th className="px-6 py-3">Líder</th>
-                <th className="px-6 py-3">Jugadores</th>
-                <th className="px-6 py-3">Torneo</th>
-                <th className="px-6 py-3 text-center">Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              {equipos.map(equipo => (
-                <tr key={equipo.equipo_id} className="bg-white border-b hover:bg-gray-50">
-                  <td className="px-6 py-4">{equipo.nombre}</td>
-                  <td className="px-6 py-4">{equipo.lider_id}</td>
-                  <td className="px-6 py-4">
-
-                    <ul>
-                      {
-                        equipo.jugadores.map(jugador => (
-                          <li>
-                            {jugador.nombre}
-                          </li>
-                        ) )
-                      }
-                    </ul>
-
-                  </td>
-                  <td className="px-6 py-4">{equipo.torneos[0]?.nombre}</td>
-                  <td className="px-6 py-4 flex justify-center space-x-2">
-                    <button
-                      onClick={() => setModalEditInfo(equipo)}
-                      className="bg-blue-600 hover:bg-blue-700 text-white rounded-lg p-2"
-                    >
-                      <LuPencil />
-                    </button>
-                    <button
-                      onClick={() => removeEquipo(equipo.equipo_id)}
-                      className="bg-red-600 hover:bg-red-700 text-white rounded-lg p-2"
-                    >
-                      <LuTrash />
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
         <ToastContainer />
       </div>
     </>

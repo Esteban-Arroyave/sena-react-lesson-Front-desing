@@ -13,6 +13,9 @@ function Jugadores() {
     fetchJugadores();
   }, []);
 
+
+  
+
   const fetchJugadores = async () => {
     try {
       const response = await axios.get(import.meta.env.VITE_TORNEO_ENDPOINT + '/listar-jugadores');
@@ -98,37 +101,47 @@ function Jugadores() {
         <button className="bg-green-700 text-white rounded shadow-md p-2 my-4" onClick={openJugadoresModal}>
           Registrar Jugadores
         </button>
-        <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-          <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-              <tr>
-                <th className="px-6 py-3">Nombre</th>
-                <th className="px-6 py-3">Nickname</th>
-                <th className="px-6 py-3">Correo</th>
-                <th className="px-6 py-3">Pais</th>
-                <th className="px-6 py-3"></th>
-              </tr>
-            </thead>
-            <tbody>
-              {Jugadores.map(Jugadores => (
-                <tr key={Jugadores.id_jugador} className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 border-gray-200">
-                  <td className="px-6">{Jugadores.nombre}</td>
-                  <td className="px-6">{Jugadores.nickname}</td>
-                  <td className="px-6">{Jugadores.correo}</td>
-                  <td className="px-6">{Jugadores.pais}</td>
-                  <td className="px-6">
-                    <button onClick={() => setModalEditInfo(Jugadores)} className="bg-blue-600 text-white rounded p-2 mr-2 my-2">
-                      <LuPencil />
-                    </button>
-                    <button onClick={() => removeJugadores(Jugadores.id_jugador)} className="bg-red-600 text-white rounded p-2 my-2">
-                      <LuTrash />
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+       
+  <div className="relative overflow-x-auto w-full max-w-6xl shadow-2xl rounded-xl ring-1 ring-blue-600/40">
+    <table className="w-full text-sm text-left text-gray-300">
+      <thead className="text-xs uppercase bg-blue-950 text-blue-300">
+        <tr>
+          <th className="px-6 py-3">Nombre</th>
+          <th className="px-6 py-3">Nickname</th>
+          <th className="px-6 py-3">Correo</th>
+          <th className="px-6 py-3">País</th>
+          <th className="px-6 py-3 text-center">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {Jugadores.map((jugador) => (
+          <tr
+            key={jugador.id_jugador}
+            className="odd:bg-gray-900 even:bg-gray-800 border-b border-blue-900 hover:bg-blue-950 transition"
+          >
+            <td className="px-6 py-3">{jugador.nombre}</td>
+            <td className="px-6 py-3">{jugador.nickname}</td>
+            <td className="px-6 py-3">{jugador.correo}</td>
+            <td className="px-6 py-3">{jugador.pais}</td>
+            <td className="px-6 py-3 flex justify-center gap-2">
+              <button
+                onClick={() => setModalEditInfo(jugador)}
+                className="bg-blue-600 hover:bg-blue-500 text-white p-2 rounded-lg"
+              >
+                <LuPencil />
+              </button>
+              <button
+                onClick={() => removeJugadores(jugador.id_jugador)}
+                className="bg-red-700 hover:bg-red-600 text-white p-2 rounded-lg"
+              >
+                <LuTrash />
+              </button>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
         <ToastContainer />
       </div>
     </>

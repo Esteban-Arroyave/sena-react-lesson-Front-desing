@@ -4,77 +4,44 @@ const Layout = () => {
   return (
     <>
       <nav className="bg-gray-900 shadow-lg border-b border-gray-800">
-        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <div className="max-w-screen-xl flex items-center justify-between mx-auto p-4">
           <Link to="/" className="flex items-center space-x-3">
             <img
-              src="https://acdn-us.mitiendanube.com/stores/001/471/169/themes/common/logo-188957454-1609033620-e6e4c01842ce98f7ebdcf8ac98d5896d1609033621.png?0"
-              className="h-10"
-              alt="Sena Logo"
+              src="https://www.giantbomb.com/a/uploads/square_small/10/101958/2069403-demonee_ho.png"
+              className="h-16"
+              alt="Logo Demonica Torneum"
             />
-            <span className="text-2xl font-bold text-white">GamerZone Torneos</span>
+            <span className="text-3xl font-extrabold text-white tracking-wide">
+              Demonica Torneum
+            </span>
           </Link>
-
-          <button
-            data-collapse-toggle="navbar-default"
-            type="button"
-            className="inline-flex items-center p-2 w-10 h-10 justify-center text-gray-400 rounded-lg md:hidden hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-green-500"
-            aria-controls="navbar-default"
-            aria-expanded="false"
-          >
-            <span className="sr-only">Open main menu</span>
-            <svg
-              className="w-6 h-6"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 17 14"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M1 1h15M1 7h15M1 13h15"
-              />
+        </div>
+        <div className="bg-gray-800 py-6 px-4 flex justify-center gap-10 flex-wrap">
+          <NavCard to="/torneo" title="Torneos">
+            {/* Trophy Icon */}
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-12 h-12 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M8 21h8M12 17v4M6 3h12a2 2 0 012 2v3a5 5 0 01-5 5H9a5 5 0 01-5-5V5a2 2 0 012-2z" />
             </svg>
-          </button>
-
-          <div className="hidden w-full md:block md:w-auto" id="navbar-default">
-            <ul className="flex flex-col md:flex-row md:space-x-6 font-medium mt-4 md:mt-0 text-sm">
-              <li>
-                <Link
-                  to="/torneo"
-                  className="block py-2 px-4 rounded-lg text-white hover:bg-green-600 transition"
-                >
-                  Torneos
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/videojuegos"
-                  className="block py-2 px-4 rounded-lg text-white hover:bg-green-600 transition"
-                >
-                  Videojuegos
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/Jugadores"
-                  className="block py-2 px-4 rounded-lg text-white hover:bg-green-600 transition"
-                >
-                  Jugadores
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/Equipos"
-                  className="block py-2 px-4 rounded-lg text-white hover:bg-green-600 transition"
-                >
-                  Equipos
-                </Link>
-              </li>
-            </ul>
-          </div>
+          </NavCard>
+          <NavCard to="/videojuegos" title="Videojuegos">
+            {/* Game Controller Icon */}
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-12 h-12 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h.01M15 12h.01M12 9v6M3 7h18v10a4 4 0 01-4 4H7a4 4 0 01-4-4V7z" />
+            </svg>
+          </NavCard>
+          <NavCard to="/Jugadores" title="Jugadores">
+            {/* User Group Icon */}
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-12 h-12 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87M16 7a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+          </NavCard>
+          <NavCard to="/Equipos" title="Equipos">
+            {/* Users Icon */}
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-12 h-12 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87M16 7a4 4 0 11-8 0 4 4 0 018 0z" />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 14v-2" />
+            </svg>
+          </NavCard>
         </div>
       </nav>
 
@@ -84,5 +51,15 @@ const Layout = () => {
     </>
   );
 };
+
+const NavCard = ({ to, title, children }) => (
+  <Link
+    to={to}
+    className="flex flex-col items-center bg-gray-700 hover:bg-green-600 text-white p-6 rounded-3xl w-32 h-32 shadow-lg transition duration-300 ease-in-out"
+  >
+    {children}
+    <span className="mt-3 text-lg font-semibold">{title}</span>
+  </Link>
+);
 
 export default Layout;
